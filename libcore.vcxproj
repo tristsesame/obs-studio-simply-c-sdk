@@ -45,6 +45,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>F:\tools\obs-studio-master\obs-studio-master\build\libcore\Release</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -72,18 +73,20 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBCORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBCORE_EXPORTS;DL_OPENGL="libobs-opengl.dll";DL_D3D9="";DL_D3D11="libobs-d3d11.dll";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>F:\tools\obs-studio-master\obs-studio-master\build\obs;F:\tools\obs-studio-master\obs-studio-master\obs;F:\tools\obs-studio-master\obs-studio-master\libobs;F:\tools\obs-studio-master\dependency\include;F:\tools\obs-studio-master\obs-studio-master\build\config;F:\tools\obs-studio-master\obs-studio-master\deps\libff\.;C:\Qt\Qt5.6.0\5.6\msvc2013\include;C:\Qt\Qt5.6.0\5.6\msvc2013\include\QtWidgets;C:\Qt\Qt5.6.0\5.6\msvc2013\include\QtGui;C:\Qt\Qt5.6.0\5.6\msvc2013\include\QtCore;C:\Qt\Qt5.6.0\5.6\msvc2013\.\mkspecs\win32-msvc2013;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\libobs\Release\obs.lib;..\deps\libff\Release\libff.lib;C:\Qt\Qt5.6.0\5.6\msvc2013\lib\Qt5Widgetsd.lib;F:\tools\obs-studio-master\dependency\bin\libcurl.lib;F:\tools\obs-studio-master\dependency\bin\avcodec.lib;F:\tools\obs-studio-master\dependency\bin\avfilter.lib;F:\tools\obs-studio-master\dependency\bin\avdevice.lib;F:\tools\obs-studio-master\dependency\bin\avutil.lib;F:\tools\obs-studio-master\dependency\bin\swscale.lib;F:\tools\obs-studio-master\dependency\bin\avformat.lib;F:\tools\obs-studio-master\dependency\bin\swresample.lib;C:\Qt\Qt5.6.0\5.6\msvc2013\lib\Qt5Guid.lib;C:\Qt\Qt5.6.0\5.6\msvc2013\lib\Qt5Cored.lib;C:\Qt\Qt5.6.0\5.6\msvc2013\lib\qtmaind.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -92,6 +95,9 @@
   <ItemGroup>
     <ClInclude Include="core-info.h" />
     <ClInclude Include="Define.h" />
+    <ClInclude Include="func-draw.h" />
+    <ClInclude Include="func.h" />
+    <ClInclude Include="libcore-internal.h" />
     <ClInclude Include="libcore.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,3 @@
-/*
-*  2016.7.26
-*  mail:purpledaisy@163.com
-*/
-
 #pragma once
 
 #include "obs.h"
@@ -27,6 +22,18 @@
 #define TEXT_INPUT_AUDIO_DEFAULT_DEVICE_ID "default"
 #define TEXT_INPUT_AUDIO_DEFAULT_DEVICE_DESC "AuxAudioDevice1"
 
+#define TEXT_FILTER_NOISE "noise_gate_name"
+#define TEXT_FILTER_NOISE_ID "noise_gate_filter"
+
+#define S_OPEN_THRESHOLD               "open_threshold"
+#define S_CLOSE_THRESHOLD              "close_threshold"
+#define S_ATTACK_TIME                  "attack_time"
+#define S_HOLD_TIME                    "hold_time"
+#define S_RELEASE_TIME                 "release_time"
+
+
+#define PREVIEW_EDGE_SIZE 10
+
 /* --------------------------------------------------- */
 
 typedef obs_source_t* SourceContext;
@@ -35,55 +42,36 @@ typedef obs_display_t* DisplayContext;
 typedef obs_properties_t* SourcePorperty;
 typedef obs_sceneitem_t * SceneItem;
 
-/*
-class SourceContext {
-	obs_source_t *source;
+obs_service_t * service = nullptr;
+obs_data_t *h264Settings = nullptr;
+obs_data_t *aacSettings = nullptr;
 
-public:
-	inline bool IsValid() { return source != nullptr; }
-	inline SourceContext() { source = nullptr; }
-	inline SourceContext(obs_source_t *source) : source(source) {}
-	inline ~SourceContext() { obs_source_release(source); }
-	inline operator obs_source_t*() { return source; }
-};
+//rtmp
+obs_encoder_t *h264Streaming = nullptr;
+obs_encoder_t *aacStreaming = nullptr;
+obs_output_t* streamOutput = nullptr;
 
+//record
+obs_encoder_t *aacRecording = nullptr;
+obs_encoder_t *h264Recording = nullptr;
+obs_output_t* fileOutput = nullptr;
 
+static bool firstStart = true;
 
-class SceneContext {
-	obs_scene_t *scene;
+static int preview_wnd_width = 800;
+static int preview_wnd_height = 600;
 
-public:
-	inline bool IsValid() { return scene != nullptr; }
-	inline SceneContext() { scene = nullptr; }
-	inline SceneContext(obs_scene_t *scene) : scene(scene) {}
-	inline ~SceneContext() { obs_scene_release(scene); }
-	inline operator obs_scene_t*() { return scene; }
-};
+static float preview_wnd_scale = 0.0;
 
+static int  preview_wnd_x = 0;
+static int  preview_wnd_y = 0;
 
+static uint64_t lastBytesSent = 0;
+static uint64_t lastBytesSentTime = 0;
+static uint64_t beginBytesSend = 0;
 
-class DisplayContext {
-	obs_display_t *display;
-
-public:
-	inline bool IsValid() { return display != nullptr; }
-	inline DisplayContext() { display = nullptr; }
-	inline DisplayContext(obs_display_t *display) : display(display) {}
-	inline ~DisplayContext() { obs_display_destroy(display); }
-	inline operator obs_display_t*() { return display; }
-};
+static uint64_t lastTotalFrames = 0;
 
 
-
-class SourcePorperty {
-	obs_properties_t *ppts;
-
-public:
-	inline bool IsValid() { return ppts != nullptr; }
-	inline SourcePorperty() { ppts = nullptr; }
-	inline SourcePorperty(obs_properties_t *ppts) : ppts(ppts) {}
-	inline ~SourcePorperty() { obs_properties_destroy(ppts); }
-	inline operator obs_properties_t*() { return ppts; }
-};
-
-*/
+//static const int cx = 800;
+//static const int cy = 600;
