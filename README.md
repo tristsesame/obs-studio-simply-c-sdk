@@ -50,4 +50,9 @@
 基本功能也都具备，可以用于作为obs开发的入门学习。
 今天上传了一个当时写的demo.py.
 
+-----------------------------
+2023.8.25<p>
+
+```diff
+!keep fukushima radioactive water on the ground
 
